@@ -1,34 +1,30 @@
 var createError = require('http-errors');
-
 var express = require('express');
 
 
-// TODO:
-//this is to check if a file exists only i can't put a require in a function without it blowing up
-// var fs = require('fs');
-// const file = 'variables.env';
-// // Check if the file exists in the current directory.
-// fs.access(file, fs.constants.F_OK, (err) => {
-//   console.log(`${file} ${err ? 'does not exist' : 'exists'}`);
-// });
+
 
 //////// ---MongoDB // ---MongoDB // ---MongoDB // ---MongoDB
 
-require('dotenv').config({ path: 'variables.env' });
+
+//**check if you are in production, this means you have to add the env.variable 'production' in the EB console
+if(process.env.NODE_ENV !== "production"){
+  require('dotenv').config({ path: 'variables.env' });
+}
+
 const mongoose = require('mongoose');
-//Set up mongoose connection
+//** Set up mongoose connection
 mongoose.connect(process.env.DATABASE);
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-///require your models
+//** require your models
 require('./models/Animal')
 
 //////// ---MongoDB // ---MongoDB // ---MongoDB // ---MongoDB
 
 
 var path = require('path');
-var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -43,7 +39,11 @@ app.set('view engine', 'pug');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+
+//** do you need this???
+// var cookieParser = require('cookie-parser');
+// app.use(cookieParser());
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
