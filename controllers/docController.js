@@ -1,6 +1,7 @@
 
 
 exports.homepage = (req, res) => {
+  console.log('Cookies HOME🍪 ', req.cookies)
   res.render('homepage')
 }
 
