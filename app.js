@@ -6,7 +6,6 @@ var express = require('express');
 
 //////// ---MongoDB // ---MongoDB // ---MongoDB // ---MongoDB
 
-
 //**check if you are in production, this means you have to add the env.variable 'production' in the EB console
 if(process.env.NODE_ENV !== "production"){
   require('dotenv').config({ path: 'variables.env' });

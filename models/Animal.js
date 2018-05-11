@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const animalSchema = new mongoose.Schema({
 
-    animal : String,
+    name : String,
     diet : String
 });
 

@@ -2,3 +2,7 @@ extends layout
 
 block content
   h1 this is homepage
+
+  each animal in animals 
+    p name: #{animal.name}
+    p eats: #{animal.diet}
