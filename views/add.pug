@@ -2,17 +2,19 @@ extends layout
 
 block content
 
-  h1 this is add page
+  h2 this is add page
+  br
   
-    form.form-login(action='add', method='post')
-    
-      label(for='name') name
-      input(type='email', name='email')
-      br
-      //- label(for='password') password
-      //- input(type='password', name='password')
-      br
-      input(type='submit', name='', value='click for post')
+  form.form-login(action='add', method='post')
+    label(for='animal') animal
+    input(type='animal', name='animal')
+    br
+    br
+    label(for='diet') eats what
+    input(type='diet', name='diet')
+    br
+    br
+    input(type='submit', name='', value='click for post')
 
 
     if this_is_post

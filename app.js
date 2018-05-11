@@ -2,24 +2,39 @@ var createError = require('http-errors');
 
 var express = require('express');
 
+
+// TODO:
+//this is to check if a file exists only i can't put a require in a function without it blowing up
+// var fs = require('fs');
+// const file = 'variables.env';
+// // Check if the file exists in the current directory.
+// fs.access(file, fs.constants.F_OK, (err) => {
+//   console.log(`${file} ${err ? 'does not exist' : 'exists'}`);
+// });
+
+//////// ---MongoDB // ---MongoDB // ---MongoDB // ---MongoDB
+
 require('dotenv').config({ path: 'variables.env' });
 const mongoose = require('mongoose');
-
 //Set up mongoose connection
 mongoose.connect(process.env.DATABASE);
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+///require your models
+require('./models/Animal')
+
+//////// ---MongoDB // ---MongoDB // ---MongoDB // ---MongoDB
 
 
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
 var app = express();
+;
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -33,6 +48,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
