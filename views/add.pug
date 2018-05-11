@@ -1,0 +1,19 @@
+extends layout
+
+block content
+
+  h1 this is add page
+  
+    form.form-login(action='add', method='post')
+    
+      label(for='name') name
+      input(type='email', name='email')
+      br
+      //- label(for='password') password
+      //- input(type='password', name='password')
+      br
+      input(type='submit', name='', value='click for post')
+
+
+    if this_is_post
+      p thanks for clicking    
